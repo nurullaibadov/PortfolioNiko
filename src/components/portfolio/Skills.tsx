@@ -94,19 +94,26 @@ export default function Skills() {
       </div>
 
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="flex flex-col items-center mb-32 text-center">
+        {/* Section Header - Exhibition Catalogue Style */}
+        <div className="flex flex-col items-start mb-40 text-left border-l-2 border-primary/20 pl-12">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            initial={{ x: -20, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="px-6 py-2 rounded-full bg-primary/10 text-primary text-xs font-black tracking-[0.5em] uppercase mb-6 italic"
+            className="text-[10px] font-black tracking-[0.8em] uppercase text-primary mb-4"
           >
-            {t('skills.subtitle')}
+            Technical Exhibit: 02
           </motion.div>
-          <h2 className="text-7xl sm:text-8xl lg:text-[10rem] font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
-            Technical <span className="text-primary underline decoration-primary/20">Artistry</span>
+          <h2 className="text-8xl sm:text-9xl lg:text-[12rem] font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
+            System <br /><span className="text-primary/20">Arsenal</span>
           </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="mt-12 text-xl font-medium text-muted-foreground max-w-xl italic leading-relaxed"
+          >
+            A curated collection of high-performance technologies, optimized for orchestrating complex digital architecture.
+          </motion.p>
         </div>
 
         {/* Bento Grid Skills */}

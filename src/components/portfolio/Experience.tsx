@@ -197,28 +197,25 @@ export default function Experience() {
       </div>
 
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-end justify-between mb-32 gap-12">
+        {/* Section Header - Exhibition Catalogue Style */}
+        <div className="flex flex-col items-start mb-40 text-left border-l-2 border-primary/20 pl-12">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ x: -20, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="max-w-2xl"
+            className="text-[10px] font-black tracking-[0.8em] uppercase text-primary mb-4"
           >
-            <div className="inline-block px-6 py-2 rounded-full bg-primary/10 text-primary text-xs font-black tracking-[0.5em] uppercase mb-6 italic">
-              {t('experience.subtitle')}
-            </div>
-            <h2 className="text-7xl sm:text-8xl lg:text-9xl font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
-              Life <br /><span className="text-primary underline decoration-primary/20">Timeline</span>
-            </h2>
+            Temporal Archive: 03
           </motion.div>
+          <h2 className="text-8xl sm:text-9xl lg:text-[12rem] font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
+            Life <br /><span className="text-primary/20">Archive</span>
+          </h2>
           <motion.p
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl text-muted-foreground font-medium lg:text-right max-w-sm italic leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="mt-12 text-xl font-medium text-muted-foreground max-w-xl italic leading-relaxed"
           >
-            Mapping the intersection of <span className="text-foreground font-black">logic</span> and <span className="text-primary font-black">art</span> over the years.
+            A chronological documentation of professional evolution, documenting the convergence of logic and artistry.
           </motion.p>
         </div>
 

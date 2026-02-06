@@ -8,10 +8,14 @@ import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 import PremiumEffects from "@/components/portfolio/PremiumEffects";
 import ScrollToTop from "@/components/portfolio/ScrollToTop";
+import MuseumOverlay from "@/components/portfolio/MuseumOverlay";
+import SectionNavigator from "@/components/portfolio/SectionNavigator";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background cursor-none overflow-x-hidden noise-bg">
+    <div className="min-h-screen bg-background cursor-none overflow-x-hidden noise-bg relative">
+      <MuseumOverlay />
+      <SectionNavigator />
       <PremiumEffects />
       <ScrollToTop />
       <Navbar />

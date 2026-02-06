@@ -135,28 +135,65 @@ export default function Hero() {
               </motion.div>
             </Magnetic>
 
-            {/* Main Text */}
+            {/* Main Text - Ultra-Responsive Unbroken Typography */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="mb-8"
+              transition={{ duration: 1.5 }}
+              className="mb-12 relative z-10"
             >
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black mb-4 leading-none tracking-tighter italic">
-                <span className="block text-foreground/40">{t('hero.greeting')}</span>
-                <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-x block">
-                  <LetterAnimate text={t('hero.name')} delay={0.5} />
-                </span>
+              <h1 className="flex flex-col gap-0 leading-[0.75] tracking-tighter uppercase italic select-none text-center lg:text-left">
+                <div className="overflow-hidden">
+                  <motion.span
+                    initial={{ y: "110%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
+                    className="font-black text-foreground/10 block whitespace-nowrap"
+                    style={{ fontSize: "clamp(2.5rem, 10vw, 8.5rem)" }}
+                  >
+                    Nurulla
+                  </motion.span>
+                </div>
+                <div className="overflow-hidden mt-[-1vw] relative inline-flex items-baseline justify-center lg:justify-start">
+                  <motion.span
+                    initial={{ y: "110%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.8, ease: [0.33, 1, 0.68, 1] }}
+                    className="font-black text-primary block whitespace-nowrap drop-shadow-[0_0_50px_rgba(var(--primary-rgb),0.3)]"
+                    style={{ fontSize: "clamp(3.5rem, 14vw, 11rem)" }}
+                  >
+                    Ibadov<span className="text-[2vw] ml-[1vw] opacity-30 italic">®</span>
+                  </motion.span>
+                </div>
               </h1>
+
+              <div className="absolute -left-12 top-1/2 -rotate-90 origin-left hidden xl:block">
+                <div className="text-[8px] font-mono tracking-[0.5em] text-primary/40 uppercase">
+                  Exhibit: Core_Asset_01 // Auth: N_I_2026
+                </div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 1.5 }}
+                className="absolute -top-12 -left-12 w-32 h-32 border-l-2 border-t-2 border-primary/20 pointer-events-none hidden lg:block"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 1.7 }}
+                className="absolute -bottom-12 -right-12 w-32 h-32 border-r-2 border-b-2 border-primary/20 pointer-events-none hidden lg:block"
+              />
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-muted-foreground/80 mb-10 flex items-center justify-center lg:justify-start gap-4 font-mono"
+              transition={{ delay: 1.8 }}
+              className="text-2xl sm:text-3xl lg:text-4xl font-black text-muted-foreground/60 mb-12 flex items-center justify-center lg:justify-start gap-6 font-mono tracking-widest uppercase italic"
             >
-              <div className="w-12 h-1 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)]" />
+              <span className="h-[2px] w-20 bg-primary/30 backdrop-blur-sm" />
               <TypeWriter texts={roles} />
             </motion.div>
 

@@ -1,14 +1,45 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence, useMotionValue } from 'framer-motion';
+import { useTheme } from '@/hooks/useTheme';
+
+const FloatingArt = () => {
+    return (
+        <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-[0.05] z-[-5]">
+            {/* Abstract Lines */}
+            {[...Array(5)].map((_, i) => (
+                <motion.div
+                    key={`line-${i}`}
+                    initial={{ x: "-10%", y: Math.random() * 100 + "%", rotate: Math.random() * 20 - 10 }}
+                    animate={{ x: "110%" }}
+                    transition={{ duration: 60 + Math.random() * 40, repeat: Infinity, ease: "linear", delay: i * 5 }}
+                    className="absolute h-[1px] w-[50%] bg-gradient-to-r from-transparent via-primary to-transparent"
+                />
+            ))}
+
+            {/* Floating Orbs */}
+            {[...Array(3)].map((_, i) => (
+                <motion.div
+                    key={`orb-${i}`}
+                    initial={{ x: Math.random() * 100 + "%", y: Math.random() * 100 + "%" }}
+                    animate={{
+                        x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                        y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                    }}
+                    transition={{ duration: 40 + Math.random() * 20, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute w-[30vw] h-[30vw] rounded-full bg-primary/20 blur-[150px]"
+                />
+            ))}
+        </div>
+    );
+};
 
 const FloatingCode = () => {
     const snippets = [
-        '{ code: "best" }',
-        'const dev = "NI"',
-        '<Portfolio />',
-        'npm install magic',
-        'await success()',
-        'export default Art'
+        '{ artist: "NI" }',
+        'const soul = "0x1"',
+        '<Artistry />',
+        'await creation()',
+        'export default Masterpiece'
     ];
 
     return (
@@ -30,7 +61,7 @@ const FloatingCode = () => {
                         repeat: Infinity,
                         ease: "linear"
                     }}
-                    className="absolute text-primary text-xl font-mono whitespace-nowrap"
+                    className="absolute text-primary text-2xl font-mono whitespace-nowrap italic"
                 >
                     {text}
                 </motion.div>
@@ -49,6 +80,7 @@ export default function PremiumEffects() {
     const [cursorVariant, setCursorVariant] = useState('default');
     const [particles, setParticles] = useState<Particle[]>([]);
     const { scrollYProgress } = useScroll();
+    const { theme } = useTheme();
 
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -105,8 +137,25 @@ export default function PremiumEffects() {
         return () => window.removeEventListener('mouseover', handleMouseOver);
     }, []);
 
+    const [isClicked, setIsClicked] = useState(false);
+
+    useEffect(() => {
+        const handleMouseDown = () => setIsClicked(true);
+        const handleMouseUp = () => setIsClicked(false);
+        window.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mouseup', handleMouseUp);
+        return () => {
+            window.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, []);
+
+    // Cursor color configuration based on user request
+    const cursorColor = theme === 'light' ? '#B8860B' : '#FFD700'; // Dark Goldenrod for Light Mode, Gold for Dark Mode
+
     return (
         <>
+            <FloatingArt />
             <FloatingCode />
 
             {/* Particle Trail */}
@@ -118,8 +167,13 @@ export default function PremiumEffects() {
                             initial={{ opacity: 0.8, scale: 1 }}
                             animate={{ opacity: 0, scale: 0, y: p.y - 40 }}
                             exit={{ opacity: 0 }}
-                            className="absolute w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_10px_hsl(var(--primary))]"
-                            style={{ left: p.x, top: p.y }}
+                            className="absolute w-1.5 h-1.5 rounded-full shadow-[0_0_10px_rgba(184,134,11,0.5)]"
+                            style={{
+                                left: p.x,
+                                top: p.y,
+                                backgroundColor: cursorColor,
+                                boxShadow: `0 0 10px ${cursorColor}`
+                            }}
                         />
                     ))}
                 </AnimatePresence>
@@ -141,51 +195,72 @@ export default function PremiumEffects() {
 
             {/* Scroll Progress Bar */}
             <motion.div
-                className="fixed top-0 left-0 right-0 h-1 bg-primary z-[70] origin-left"
-                style={{ scaleX }}
+                className="fixed top-0 left-0 right-0 h-1 z-[70] origin-left"
+                style={{
+                    scaleX,
+                    backgroundColor: cursorColor
+                }}
             />
 
             {/* Main Cursor Dot */}
             <motion.div
-                className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full pointer-events-none z-[10000] hidden lg:block"
+                className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-[10000] hidden lg:block"
                 style={{
                     x: cursorX,
                     y: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
-                    scale: cursorVariant === 'hover' ? 3 : 1,
+                    scale: isClicked ? 1.5 : (cursorVariant === 'hover' ? 3 : 1),
+                    backgroundColor: cursorColor,
                     mixBlendMode: 'difference'
                 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
 
             {/* Premium Cursor Ring (Trail) */}
             <motion.div
-                className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-primary/30 pointer-events-none z-[9999] hidden lg:block backdrop-blur-[2px]"
+                className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 pointer-events-none z-[9999] hidden lg:block backdrop-blur-[2px]"
                 style={{
                     x: trailX,
                     y: trailY,
                     translateX: '-50%',
                     translateY: '-50%',
                     scale: cursorVariant === 'hover' ? 1.4 : 1,
+                    borderColor: cursorColor,
+                    opacity: 0.5
                 }}
             >
+                <svg className="absolute inset-0 w-full h-full rotate-[-90deg]">
+                    <motion.circle
+                        cx="20"
+                        cy="20"
+                        r="18"
+                        stroke={cursorColor}
+                        strokeWidth="2"
+                        fill="transparent"
+                        style={{ pathLength: scrollYProgress }}
+                        className="opacity-40"
+                    />
+                </svg>
                 {cursorVariant === 'hover' && (
                     <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1.5 }}
-                        className="absolute inset-0 border border-primary rounded-full"
+                        className="absolute inset-0 border rounded-full"
+                        style={{ borderColor: cursorColor }}
                     />
                 )}
             </motion.div>
 
             {/* Custom Mouse Light - Enhanced */}
             <motion.div
-                className="fixed top-0 left-0 w-[500px] h-[500px] bg-primary/[0.07] rounded-full blur-[120px] pointer-events-none -z-10 hidden lg:block"
+                className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none -z-10 hidden lg:block"
                 style={{
                     x: trailX,
                     y: trailY,
                     translateX: '-50%',
                     translateY: '-50%',
+                    backgroundColor: `${cursorColor}11` // Adding low alpha for ambient light
                 }}
             />
         </>

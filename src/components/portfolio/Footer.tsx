@@ -19,8 +19,19 @@ export default function Footer() {
   return (
     <footer className="pt-24 pb-12 bg-background border-t border-primary/10 relative overflow-hidden group">
       {/* Massive Background Logo Interaction */}
-      <div className="absolute -bottom-20 -left-20 pointer-events-none opacity-[0.03] select-none">
-        <h2 className="text-[30rem] font-black tracking-tighter italic">NI/</h2>
+      <div className="absolute -bottom-20 -left-20 pointer-events-none opacity-[0.03] select-none group-hover:opacity-[0.05] transition-opacity duration-1000">
+        <h2 className="text-[35rem] font-black tracking-tighter italic leading-none">NI/</h2>
+      </div>
+
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.02] select-none whitespace-nowrap overflow-hidden w-full">
+        <motion.div
+          animate={{ x: ["0%", "-50%", "0%"] }}
+          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+          className="text-[40rem] font-black tracking-tighter uppercase italic flex gap-[10vw]"
+        >
+          <span>NURULLA IBADOV</span>
+          <span>NURULLA IBADOV</span>
+        </motion.div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

@@ -56,123 +56,129 @@ export default function About() {
       <div className="absolute bottom-1/4 -left-20 w-[500px] h-[500px] bg-primary/10 blur-[180px] rounded-full -z-10" />
 
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="flex flex-col items-center mb-32 text-center">
+        {/* Section Header - Exhibition Catalogue Style */}
+        <div className="flex flex-col items-start mb-40 text-left border-l-2 border-primary/20 pl-12">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            initial={{ x: -20, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="px-6 py-2 rounded-full bg-primary/10 text-primary text-xs font-black tracking-[0.5em] uppercase mb-6 italic"
+            className="text-[10px] font-black tracking-[0.8em] uppercase text-primary mb-4"
           >
-            {t('about.subtitle')}
+            Curated Subject: 01
           </motion.div>
-          <h2 className="text-7xl sm:text-8xl lg:text-[10rem] font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
-            Digital <span className="text-primary">Soul</span>
+          <h2 className="text-8xl sm:text-9xl lg:text-[12rem] font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
+            Digital <br /><span className="text-primary/20">Manifesto</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center">
-          {/* Left - Visual Art Piece */}
-          <motion.div style={{ y: y1 }} className="relative">
-            <div className="absolute -inset-16 bg-gradient-to-tr from-primary/20 via-primary/5 to-transparent blur-[100px] -z-10 rounded-[5rem]" />
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          {/* Left - Narrative Piece (The Soul) */}
+          <motion.div style={{ y: y2, opacity }} className="lg:col-span-7 space-y-20">
+            <div className="space-y-16">
+              <h4 className="text-4xl sm:text-5xl font-black italic tracking-tighter uppercase leading-[0.9] text-foreground border-b border-primary/10 pb-12">
+                "Code is not a tool, <br /><span className="text-primary italic">it's a medium for art."</span>
+              </h4>
+              <div className="space-y-8 text-2xl sm:text-3xl text-muted-foreground font-medium leading-relaxed tracking-tight">
+                <p>
+                  {t('about.description1').split(' ').map((word: string, i: number) => (
+                    <span key={i} className="inline-block hover:text-primary transition-colors hover:scale-105 cursor-none mr-[0.5rem]">{word}</span>
+                  ))}
+                </p>
+                <p className="text-xl italic text-foreground/40 border-l-[1px] border-primary/30 pl-10 py-2">
+                  {t('about.description2')}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12">
+                <div className="space-y-4">
+                  <div className="text-[10px] font-black tracking-widest text-primary uppercase">Focus</div>
+                  <p className="text-sm font-bold text-muted-foreground">Architecting scalable digital ecosystems where aesthetics meet high-performance engineering.</p>
+                </div>
+                <div className="space-y-4">
+                  <div className="text-[10px] font-black tracking-widest text-primary uppercase">Philosophy</div>
+                  <p className="text-sm font-bold text-muted-foreground">Minimalism in design, maximalism in logic. Every line of code should serve a purpose.</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-            <Card className="glass-card border-primary/20 shadow-[0_0_100px_-20px_rgba(var(--primary-rgb),0.2)] rounded-[4rem] relative z-10 overflow-hidden bg-background">
-              <CardContent className="p-12 sm:p-20">
+          {/* Right - Visual & Stats (The Exhibit) */}
+          <motion.div style={{ y: y1 }} className="lg:col-span-5 relative">
+            <div className="absolute -inset-20 bg-primary/5 blur-[120px] -z-10 rounded-full" />
+
+            <Card className="glass-card border-primary/5 rounded-[4rem] relative z-10 overflow-hidden bg-background shadow-3xl">
+              <CardContent className="p-12">
                 <div className="flex flex-col gap-12">
-                  <div className="flex flex-col sm:flex-row items-center gap-12">
+                  <div className="relative group">
+                    <div className="absolute -inset-4 border border-primary/10 rounded-[3rem] group-hover:border-primary/40 transition-colors duration-700" />
                     <motion.div
-                      whileHover={{ scale: 1.05, rotate: 2 }}
-                      className="w-48 h-48 sm:w-64 sm:h-64 rounded-[4rem] overflow-hidden border-[10px] border-primary/10 flex-shrink-0 shadow-2xl relative group"
+                      whileHover={{ scale: 0.98 }}
+                      className="w-full aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl relative"
                     >
                       <img
                         src={profileImage}
-                        alt="Nurulla"
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-125"
+                        alt="Nurulla Exhibit"
+                        className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 scale-105"
                       />
-                      <div className="absolute inset-0 bg-primary/20 opacity-30 group-hover:opacity-0 transition-opacity" />
-                    </motion.div>
-                    <div className="text-center sm:text-left">
-                      <h3 className="text-5xl font-black mb-2 tracking-tighter uppercase italic">Nurulla Ibadov</h3>
-                      <p className="text-primary text-2xl font-black mb-8 italic tracking-tight opacity-80 uppercase">{t('hero.title')}</p>
-                      <div className="inline-flex items-center gap-4 px-8 py-4 rounded-[2rem] bg-muted/50 border border-primary/10 text-foreground shadow-2xl">
-                        <span className="relative flex h-4 w-4">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-4 w-4 bg-primary shadow-lg"></span>
-                        </span>
-                        <span className="font-black text-sm uppercase tracking-[0.3em]">{t('about.location')}</span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                      <div className="absolute bottom-6 left-6 flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em]">Exhibit Active</span>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
 
-                  {/* Digital Soul Stats (Bars) */}
-                  <div className="space-y-6 pt-12 border-t border-primary/10">
-                    {[
-                      { label: 'Creative Intelligence', color: 'bg-primary' },
-                      { label: 'Technical Accuracy', color: 'bg-primary/60' },
-                      { label: 'Optimization Spirit', color: 'bg-primary/30' }
-                    ].map((item, i) => (
-                      <div key={item.label} className="space-y-3">
-                        <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">
-                          <span>{item.label}</span>
-                          <span>{95 - (i * 5)}%</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/30 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${95 - (i * 5)}%` }}
-                            transition={{ duration: 2, delay: 0.5 + i * 0.2 }}
-                            className={`h-full ${item.color} shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)]`}
-                          />
-                        </div>
+                  <div className="space-y-8">
+                    <div className="flex justify-between items-end">
+                      <div>
+                        <h3 className="text-2xl font-black italic uppercase tracking-tighter">Nurulla Ibadov</h3>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-primary">Subject Type: Human/Engineer</div>
                       </div>
-                    ))}
+                      <MapPin className="h-6 w-6 text-primary opacity-40" />
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex justify-between text-[8px] font-black uppercase tracking-[0.3em] text-muted-foreground">
+                        <span>Creative Intelligence</span>
+                        <span>98.2%</span>
+                      </div>
+                      <div className="h-[2px] w-full bg-primary/5 overflow-hidden">
+                        <motion.div
+                          initial={{ x: "-100%" }}
+                          whileInView={{ x: 0 }}
+                          transition={{ duration: 1.5, ease: "circOut" }}
+                          className="h-full bg-primary"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </motion.div>
+        </div>
 
-          {/* Right - Narrative Piece */}
-          <motion.div style={{ y: y2, opacity }} className="space-y-16">
-            <div className="space-y-12">
-              <h4 className="text-4xl sm:text-6xl font-black italic tracking-tighter uppercase leading-[0.9] text-foreground/40 text-center lg:text-left">
-                The Story of <br /><span className="text-foreground italic">Code Mastery</span>
-              </h4>
-              <p className="text-2xl sm:text-3xl text-foreground font-medium leading-relaxed tracking-tight group">
-                {t('about.description1').split(' ').map((word: string, i: number) => (
-                  <span key={i} className="inline-block hover:text-primary transition-colors hover:scale-110 cursor-none mr-[0.5rem]">{word}</span>
-                ))}
-              </p>
-              <div className="h-[2px] w-32 bg-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.5)] rounded-full animate-pulse mx-auto lg:mx-0" />
-              <p className="text-xl text-muted-foreground leading-relaxed italic border-l-[12px] border-primary/20 pl-10 py-4 font-medium backdrop-blur-sm">
-                {t('about.description2')}
-              </p>
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 gap-8 pt-8">
+          {stats.map((stat, index) => (
+            <StatCard key={stat.labelKey} stat={stat} index={index} t={t} />
+          ))}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="p-12 rounded-[3.5rem] bg-foreground text-background col-span-2 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between group overflow-hidden relative"
+          >
+            <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-1000" />
+            <div className="relative z-10 text-center sm:text-left mb-8 sm:mb-0">
+              <h4 className="text-3xl font-black italic tracking-tighter uppercase mb-2 text-primary">{t('about.availableTitle') || 'Status: Active'}</h4>
+              <p className="font-bold opacity-60 text-base max-w-xs">{t('about.availableDesc') || 'Open for high-impact creative engineering opportunities in 2026.'}</p>
             </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-8 pt-8">
-              {stats.map((stat, index) => (
-                <StatCard key={stat.labelKey} stat={stat} index={index} t={t} />
-              ))}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="p-12 rounded-[3.5rem] bg-foreground text-background col-span-2 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between group overflow-hidden relative"
-              >
-                <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-1000" />
-                <div className="relative z-10 text-center sm:text-left mb-8 sm:mb-0">
-                  <h4 className="text-3xl font-black italic tracking-tighter uppercase mb-2 text-primary">{t('about.availableTitle') || 'Status: Active'}</h4>
-                  <p className="font-bold opacity-60 text-base max-w-xs">{t('about.availableDesc') || 'Open for high-impact creative engineering opportunities in 2026.'}</p>
-                </div>
-                <Magnetic>
-                  <div className="relative z-10 h-20 w-20 flex items-center justify-center rounded-[2rem] bg-primary text-primary-foreground shadow-2xl group-hover:rotate-12 transition-transform duration-700">
-                    <Code className="h-10 w-10" />
-                  </div>
-                </Magnetic>
-              </motion.div>
-            </div>
+            <Magnetic>
+              <div className="relative z-10 h-20 w-20 flex items-center justify-center rounded-[2rem] bg-primary text-primary-foreground shadow-2xl group-hover:rotate-12 transition-transform duration-700">
+                <Code className="h-10 w-10" />
+              </div>
+            </Magnetic>
           </motion.div>
         </div>
       </div>

@@ -168,27 +168,25 @@ export default function Projects() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-end justify-between mb-24 gap-8">
+        {/* Section Header - Exhibition Catalogue Style */}
+        <div className="flex flex-col items-start mb-40 text-left border-l-2 border-primary/20 pl-12">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ x: -20, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="max-w-2xl text-left"
+            className="text-[10px] font-black tracking-[0.8em] uppercase text-primary mb-4"
           >
-            <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-black tracking-[0.3em] uppercase mb-4 italic">
-              {t('projects.subtitle')}
-            </div>
-            <h2 className="text-6xl sm:text-7xl lg:text-9xl font-black tracking-tighter uppercase italic leading-[0.8]">
-              Featured <span className="text-primary">Art</span>
-            </h2>
+            Visual Gallery: 04
           </motion.div>
+          <h2 className="text-8xl sm:text-9xl lg:text-[12rem] font-black tracking-tighter uppercase italic leading-[0.7] text-foreground">
+            Featured <br /><span className="text-primary/20">Artworks</span>
+          </h2>
           <motion.p
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-xl text-muted-foreground font-medium lg:text-right max-w-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="mt-12 text-xl font-medium text-muted-foreground max-w-xl italic leading-relaxed"
           >
-            A curated selection of digital masterpieces built with cutting-edge technology.
+            A curated selection of digital masterpieces, each representing a unique solution to complex architectural challenges.
           </motion.p>
         </div>
 
